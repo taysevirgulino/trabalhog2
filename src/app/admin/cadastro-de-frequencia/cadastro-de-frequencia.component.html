@@ -1,0 +1,86 @@
+<h1>Cadastro de Frequência</h1>
+<hr>
+<!-- Mensagens de tratamento-->
+<div class="alert alert-success" *ngIf="cadastro_ok">
+  <strong>Cadastro realizado com sucesso! </strong>
+  Continue cadastrando ou
+  <a routerLink="/admin/frequencias/relatorio">volte para Relatório geral de frequência</a>
+</div>
+<div class="alert alert-success" *ngIf="atualizar_ok">
+  <strong>Atualização realizada com sucesso! </strong>
+  Continue editando ou
+  <a routerLink="/admin/frequencias/relatorio">volte para Relatório geral de frequência</a>
+</div>
+<div class="alert alert-danger" *ngIf="cadastro_erro">
+  <strong>Opa!</strong> Aconteceu um erro ao tentar fazer o cadastro. Aguarde alguns instantes e tente novamente.
+</div>
+<div class="alert alert-danger" *ngIf="atualizar_erro">
+  <strong>Opa!</strong> Aconteceu um erro ao tentar atualizar os dados do Funcionário. Aguarde alguns instantes e tente novamente.
+</div>
+<!---->
+<!-- Formulário de cadastro-->
+<form #cadastro="ngForm" (submit)="salvar()">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <div class="form-group">
+        <label class="mr-sm-2" for="turma">Turma:</label>
+        <select class="form-control custom-select" name="turma" id="turma" [(ngModel)]="turmaId">
+          <option *ngFor="let turma of turmas" value="{{turma.id}}">{{turma.codigo}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <div class="form-group">
+        <label class="mr-sm-2" for="disciplina">Disciplina:</label>
+        <select class="form-control custom-select" name="disciplina" id="disciplina" [(ngModel)]="disciplinaId">
+          <option *ngFor="let disciplina of disciplinas" value="{{disciplina.id}}">{{disciplina.nome}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <div class="form-group">
+        <label class="mr-sm-2" for="professor">Professor:</label>
+        <select class="form-control custom-select" name="professor" id="professor" [(ngModel)]="professorId">
+          <option *ngFor="let professor of professores" value="{{professor.id}}">{{professor.nome}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <div class="form-group">
+        <label class="mr-sm-2" for="horario">Horário:</label>
+        <select class="form-control custom-select" name="horario" id="horario" [(ngModel)]="horarioId">
+          <option *ngFor="let horario of horarios" value="{{horario.id}}">{{horario.nome}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <div class="form-group">
+        <label class="mr-sm-2" for="aluno">Aluno:</label>
+        <select class="form-control custom-select" name="aluno" id="aluno" [(ngModel)]="alunoId">
+          <option *ngFor="let aluno of alunos" value="{{aluno.id}}">{{aluno.nome}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="form-group">
+        <label for="data">Data de Cadastro:</label>
+        <input type="date" class="form-control" id="data" name="data" [(ngModel)]="data" required>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <div class="radio">
+          <label class="radio-inline">
+            <input type="radio" name="status" value="P" [(ngModel)]="status"> Presença</label>
+          <label class="radio-inline">
+            <input type="radio" name="status" value="F" [(ngModel)]="status"> Falta</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!cadastro.valid">Salvar</button>
+</form>
+<!---->

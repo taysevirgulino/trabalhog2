@@ -1,0 +1,24 @@
+<a class="pull-right" routerLink="/admin/pessoas">
+  <i class="fa fa-arrow-left"></i> Lista de Pessoas</a>
+<h1>Detalhes da Pessoa</h1>
+<hr>
+<p>
+  <strong>ID</strong>: {{funcionario.id}}
+</p>
+<p>
+  <strong>Nome</strong>: {{funcionario.pessoa.nome}}
+</p>
+<p>
+  <strong>Cargo</strong>: {{funcionario.cargo.nome}}
+</p>
+<p>
+  <strong>Tipo</strong>: {{funcionario.tipo}}
+</p>
+<p>
+  <strong>Função</strong>:
+</p>
+<ul *ngFor="let funcaoFunc of funcionario.funcoes">
+  <ul *ngFor="let funcao of funcoes">
+    <li *ngIf="funcaoFunc == funcao.id">{{funcao.nome}}</li>
+  </ul>
+</ul>
